@@ -30,10 +30,13 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npx ng build --configuration=production --base-href /valentine/
+        run: npx ng build --configuration=production --base-href /${{ github.event.repository.name }}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Copy index to 404 for SPA fallback
+        run: cp dist/valentine-app/browser/index.html dist/valentine-app/browser/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
