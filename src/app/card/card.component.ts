@@ -136,11 +136,17 @@ export class CardComponent implements AfterViewInit, OnDestroy {
     this.saidYes.set(false);
   }
 
+  resetNoToStart(): void {
+    if (this.answered()) return;
+    this.noPosition.set({ position: 'relative', left: 0, top: 0 });
+    this.noButtonText.set(this.noButtonTexts[0]);
+  }
+
   reset(): void {
     this.answered.set(false);
     this.saidYes.set(false);
     this.noPosition.set({ position: 'relative', left: 0, top: 0 });
-    this.noButtonText.set('No');
+    this.noButtonText.set(this.noButtonTexts[0]);
     this.escapeCount = 0;
   }
 
